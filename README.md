@@ -1,1 +1,1 @@
-# Leetcode
+# Solutions for Leetcode and Spoj problems
