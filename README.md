@@ -1,1 +1,3 @@
-# Solutions for Leetcode and Spoj problems
+### Leetcode
+### Spoj 
+### Codingame
