@@ -39,12 +39,9 @@ void addString(const string &s) {
 int dfs(int v) {
     int cntV = trie[v].cnt;
     int have = 0;
-    int fromRoot = 0;
     for (char c = 'A'; c <= 'Z' + 1; ++c) {
         int to = trie[v].next[c - 'A'];
         if (to != -1) {
-            if (v == 0) ++fromRoot;
-
             int cntTo = trie[to].cnt;
             if (cntTo > 1) {
                 have += dfs(to);
@@ -54,9 +51,7 @@ int dfs(int v) {
     cntV -= have;
     cntV -= cntV % 2;
     int ret = have;
-    if (v == 0) {
-        ret = have;
-    } else {
+    if (v != 0) {
         ret += min(2, cntV);
     }
     return ret;
