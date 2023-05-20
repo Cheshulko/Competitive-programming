@@ -10,21 +10,15 @@ impl Solution {
         values: Vec<f64>,
         queries: Vec<Vec<String>>,
     ) -> Vec<f64> {
-        let mut graph: BTreeMap<String, Vec<(String, f64)>> = BTreeMap::new();
+        let mut graph: BTreeMap<&String, Vec<(&String, f64)>> = BTreeMap::new();
 
         equations.iter().zip(values.iter()).for_each(|(eq, w)| {
             let from = &eq[0];
             let to = &eq[1];
 
-            graph
-                .entry(from.clone())
-                .or_insert(vec![])
-                .push((to.clone(), *w));
+            graph.entry(from).or_insert(vec![]).push((to, *w));
 
-            graph
-                .entry(to.clone())
-                .or_insert(vec![])
-                .push((from.clone(), 1.0 / *w));
+            graph.entry(to).or_insert(vec![]).push((from, 1.0 / *w));
         });
 
         queries
@@ -44,7 +38,7 @@ impl Solution {
     }
 
     fn dfs(
-        graph: &BTreeMap<String, Vec<(String, f64)>>,
+        graph: &BTreeMap<&String, Vec<(&String, f64)>>,
         used: &mut HashSet<String>,
         cur: &String,
         target: &String,
@@ -56,7 +50,7 @@ impl Solution {
         } else {
             if let Some(edges) = graph.get(cur) {
                 for (to, w) in edges {
-                    if !used.contains(to) {
+                    if !used.contains(*to) {
                         if let Some(res) = Solution::dfs(graph, used, to, target) {
                             return Some(res * w);
                         }
