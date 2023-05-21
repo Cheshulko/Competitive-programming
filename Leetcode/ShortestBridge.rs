@@ -25,14 +25,11 @@ impl Solution {
                     .iter()
                     .enumerate()
                     .flat_map(|(i, v)| {
-                        let p = v
-                            .iter()
+                        v.iter()
                             .enumerate()
                             .filter(|(_, g)| g == &group_ind)
                             .map(|(j, _)| (i as i32, j as i32))
-                            .collect::<Vec<_>>();
-
-                        p
+                            .collect::<Vec<_>>()
                     })
                     .collect::<Vec<_>>()
             })
