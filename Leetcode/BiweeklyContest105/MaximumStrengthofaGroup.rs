@@ -42,7 +42,7 @@ impl Solution {
                 if has0 {
                     0
                 } else {
-                    gg
+                    extra
                 }
             }
         }
