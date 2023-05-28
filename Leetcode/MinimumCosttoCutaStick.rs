@@ -22,12 +22,7 @@ impl Solution {
             let mut ans = i32::MAX;
             for cut_ind in 0..cuts.len() {
                 let cuts_left = &cuts[..cut_ind];
-
-                let cuts_right = if cut_ind == cuts.len() - 1 {
-                    &[]
-                } else {
-                    &cuts[(cut_ind + 1)..]
-                };
+                let cuts_right = &cuts[(cut_ind + 1)..];
 
                 let left = go(s, cuts[cut_ind], dp, cuts_left);
                 let right = go(cuts[cut_ind], e, dp, cuts_right);
