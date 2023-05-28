@@ -27,7 +27,7 @@ impl Solution {
                 let left = go(s, cuts[cut_ind], dp, cuts_left);
                 let right = go(cuts[cut_ind], e, dp, cuts_right);
 
-                ans = ans.min((e - s) as i32 + left + right);
+                ans = ans.min(e - s + left + right);
             }
 
             dp.insert((s, e), ans);
