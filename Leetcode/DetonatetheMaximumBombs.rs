@@ -4,8 +4,6 @@ struct Solution {}
 
 impl Solution {
     pub fn maximum_detonation(bombs: Vec<Vec<i32>>) -> i32 {
-        let mut used = vec![false; 101];
-
         let mut ans = 0;
         for (i, bomb) in bombs.iter().enumerate() {
             let mut used = vec![false; 101];
