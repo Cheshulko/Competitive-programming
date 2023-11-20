@@ -22,7 +22,6 @@ impl Solution {
                         sum += count;
                         prev_stop = ind;
                     }
-                    println!("{ind} {sum} {prev_stop}");
                     (sum, prev_stop)
                 })
                 .0
