@@ -15,27 +15,27 @@ impl Solution {
 
         let n = n as usize;
 
-        let mut rooms = BinaryHeap::<Reverse<(i64, i32)>>::new();
+        let mut rooms = BinaryHeap::<Reverse<(i64, usize)>>::new();
         let mut meetings_at_rooms: Vec<i32> = vec![0; n];
-        (0..n).for_each(|i| rooms.push(Reverse((0, (i as i32)))));
+        (0..n).for_each(|i| rooms.push(Reverse((0, i))));
 
         for meeting in meetings.into_iter() {
             let next_meeting_start_time = meeting[0];
 
             let free_room = loop {
                 let free_room = rooms.peek().unwrap();
-                let free_room_ind = (free_room.0 .1) as usize;
+                let free_room_ind = free_room.0 .1;
                 let free_room_time = free_room.0 .0;
 
                 if free_room_time < next_meeting_start_time {
                     rooms.pop();
-                    rooms.push(Reverse((next_meeting_start_time, (free_room_ind as i32))));
+                    rooms.push(Reverse((next_meeting_start_time, free_room_ind)));
                 } else {
                     break rooms.pop().unwrap();
                 }
             };
 
-            let free_room_ind = (free_room.0 .1) as usize;
+            let free_room_ind = free_room.0 .1;
             let free_room_time = free_room.0 .0;
             assert!(free_room_time >= next_meeting_start_time);
 
@@ -44,7 +44,7 @@ impl Solution {
             let meeting_duration = meeting[1] - meeting[0];
             let meetng_end_time = free_room_time + meeting_duration;
 
-            rooms.push(Reverse((meetng_end_time, (free_room_ind as i32))));
+            rooms.push(Reverse((meetng_end_time, free_room_ind)));
         }
 
         meetings_at_rooms
