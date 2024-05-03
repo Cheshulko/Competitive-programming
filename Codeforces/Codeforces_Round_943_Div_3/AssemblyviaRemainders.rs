@@ -37,16 +37,10 @@ fn main() {
             a.push(x);
         }
 
-        a.push(a[a.len() - 1]);
-
-        let mut ans = vec![a[0] + 1];
+        let mut ans = vec![501];
 
         for i in 0..(n - 1) {
-            let mut x = a[i + 1] + 1;
-            while x % ans[i] != a[i] {
-                x += 1;
-            }
-            ans.push(x);
+            ans.push(ans[i] + a[i]);
         }
 
         for x in ans.into_iter() {
