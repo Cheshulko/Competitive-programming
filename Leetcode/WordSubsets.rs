@@ -13,14 +13,16 @@ impl Solution {
             })
         };
 
-        let mut count_chars_words2 = vec![0; 26];
-        for word in words2.iter() {
-            count_chars_words2 = count_chars(word.as_bytes())
-                .into_iter()
-                .zip(count_chars_words2.into_iter())
-                .map(|(c1, c2)| c1.max(c2))
-                .collect();
-        }
+        let count_chars_words2 = words2
+            .into_iter()
+            .map(|word| count_chars(word.as_bytes()))
+            .fold(vec![0; 26], |state, count| {
+                count
+                    .into_iter()
+                    .zip(state.into_iter())
+                    .map(|(c1, c2)| c1.max(c2))
+                    .collect()
+            });
 
         words1
             .into_iter()
