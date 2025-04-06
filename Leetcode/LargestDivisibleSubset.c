@@ -36,7 +36,7 @@ int* largestDivisibleSubset(int* nums, int numsSize, int* returnSize) {
 
     *returnSize = dp[ma_i];
     int* ans = (int*)malloc(sizeof(int) * dp[ma_i]);
-    while (true) {
+    while (1) {
         ans[dp[ma_i] - 1] = nums[ma_i];
 
         if (ma_i == par[ma_i]) {
