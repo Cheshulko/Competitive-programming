@@ -1,5 +1,5 @@
-# Code
-```rust []
+// https://leetcode.com/problems/total-characters-in-string-after-transformations-ii
+
 pub mod matrix {
     #[derive(Debug, Clone)]
     pub struct Matrix<const MOD: usize> {
@@ -106,4 +106,3 @@ impl Solution {
         R.elemements_sum() as i32
     }
 }
-```
