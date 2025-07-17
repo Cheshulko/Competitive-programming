@@ -6,13 +6,6 @@ impl Solution {
     pub fn maximum_length(nums: Vec<i32>, k: i32) -> i32 {
         let n = nums.len();
 
-        let mut mtx = vec![vec![0; n]; n];
-        for i in 0..n {
-            for j in 0..i {
-                mtx[j][i] = (nums[j] + nums[i]) % k;
-            }
-        }
-
         let mut ans = 0;
         let mut dp = vec![vec![0; (k + 1) as usize]; n];
         for i in 0..n {
