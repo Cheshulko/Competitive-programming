@@ -1,0 +1,21 @@
+// https://leetcode.com/problems/largest-3-same-digit-number-in-string
+
+class Solution {
+   public:
+    string largestGoodInteger(string num) {
+        int st = -1;
+        for (int i = 0; i < num.size() - 2; ++i) {
+            if (num[i] == num[i + 1] && num[i + 1] == num[i + 2]) {
+                if (st == -1 || num[st] < num[i]) {
+                    st = i;
+                }
+            }
+        }
+
+        if (st == -1) {
+            return string();
+        } else {
+            return string(3, num[st]);
+        }
+    }
+};
