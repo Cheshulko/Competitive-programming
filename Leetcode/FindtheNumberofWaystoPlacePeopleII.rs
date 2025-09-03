@@ -20,14 +20,6 @@ impl Solution {
             points_line.sort_unstable_by_key(|point| point.1);
         }
 
-        let mut points_by_y = BTreeMap::<i32, Vec<&(i32, i32)>>::new();
-        for point in points.iter() {
-            points_by_y.entry(point.0).or_default().push(point);
-        }
-        for points_line in points_by_y.values_mut() {
-            points_line.sort_unstable_by_key(|point| point.1);
-        }
-
         let mut ans = 0;
         for points_line in points_by_x.values() {
             for &&(x1, y1) in points_line.iter() {
