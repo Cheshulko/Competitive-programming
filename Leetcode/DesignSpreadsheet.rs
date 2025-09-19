@@ -16,7 +16,7 @@ impl Spreadsheet {
     fn parse_cell<S: AsRef<str>>(&self, cell: S) -> Cell {
         let cell = cell.as_ref();
 
-        let col = (cell[0..1].chars().next().unwrap() as u8 - b'A') as usize;
+        let col = (cell.as_bytes()[0] - b'A') as usize;
         let row = cell[1..].parse::<usize>().unwrap();
 
         (row, col)
